@@ -13,48 +13,53 @@ All coding solutions must be implemented in a **single file** named `solutions.t
 ---
 
 ## Problem 1:
-Create a function `formatString` that accepts a string and an optional boolean parameter.
 
-- If the boolean parameter is `true` or not provided, return the string in **uppercase**.
-- If the boolean parameter is `false`, return the string in **lowercase**.
+Create a function `multiplyValue` that accepts a number `value` and an optional number `multiplier`.
+
+* If `multiplier` is provided, return `value` multiplied by `multiplier`.
+* If `multiplier` is not provided (`undefined`), return `value` multiplied by `2` by default.
 
 ### Requirements:
-- You must write the correct types for the function parameters and the return type.
 
-```tsx
+* Write the correct types for the function parameters and the return type.
+* Handle `0` properly when passed as `multiplier` (multiplying by `0` must return `0`).
+
+```ts
 // Sample Input:
-formatString("TypeScript");
-formatString("TypeScript", true);
-formatString("TypeScript", false);
+multiplyValue(10);
+multiplyValue(10, 5);
+multiplyValue(7, 0);
 
 // Sample Output:
-"TYPESCRIPT"
-"TYPESCRIPT"
-"typescript"
+20
+50
+0
 ```
 
 ---
 
 ## Problem 2:
+
 Create a function `processInput` that accepts a value which may be a **string**, **number**, or **boolean**, and returns a formatted result based on the value's type:
 
-- If the input is a **string** → return the length of the string multiplied by **2**.
-- If the input is a **number** → return the number multiplied by **10**.
-- If the input is a **boolean** → return `"Active"` if `true`, or `"Inactive"` if `false`.
+* If the input is a **string** → trim any leading/trailing spaces and return it in **lowercase**.
+* If the input is a **number** → return the number multiplied by **10**.
+* If the input is a **boolean** → return `"Active"` if `true`, or `"Inactive"` if `false`.
 
 ### Requirements:
-- You must write the correct union type for the function parameter and the return type.
-- You must use type narrowing (`typeof`) to handle each case safely.
 
-```tsx
+* Write the correct union type for the function parameter and the return type.
+* Use type narrowing (`typeof`) to handle each case safely.
+
+```ts
 // Sample Input:
-processInput("hello");
+processInput("  TypeScript  ");
 processInput(7);
 processInput(true);
 processInput(false);
 
 // Sample Output:
-10
+"typescript"
 70
 "Active"
 "Inactive"
@@ -63,13 +68,15 @@ processInput(false);
 ---
 
 ## Problem 3:
-Create a function `formatCoordinate` that accepts a **readonly tuple** representing a coordinate and location name in the order of `[latitude, longitude, locationName]`, and returns a formatted location string.
+
+Create a function `formatCoordinate` that accepts a **readonly tuple** representing a coordinate and location name in the exact order `[latitude, longitude, locationName]` (`[number, number, string]`), and returns a formatted location string.
 
 ### Requirements:
-- Apply the `readonly` modifier to the tuple parameter so it cannot be modified inside the function.
-- Return the exact string format shown in the sample output.
 
-```tsx
+* Apply the `readonly` modifier to the tuple parameter so it cannot be mutated inside the function.
+* Return the exact string format: `"Location: [locationName] ([latitude], [longitude])"`.
+
+```ts
 // Sample Input:
 formatCoordinate([23.81, 90.41, "Dhaka"]);
 formatCoordinate([22.35, 91.78, "Chittagong"]);
@@ -82,13 +89,15 @@ formatCoordinate([22.35, 91.78, "Chittagong"]);
 ---
 
 ## Problem 4:
-Create a generic function `concatenateArrays` that accepts multiple arrays of the **same type** using rest parameters and returns a single combined array containing all elements in order.
+
+Create a generic function `concatenateArrays` that accepts multiple arrays of the **same type** `T` using rest parameters (`...arrays: T[][]`) and returns a single flattened array containing all elements in the order they were passed.
 
 ### Requirements:
-- Must use a generic type parameter and rest parameters.
-- Do not use `any`.
 
-```tsx
+* Must use a generic type parameter `<T>` and rest parameters.
+* Do not use `any`.
+
+```ts
 // Sample Input:
 concatenateArrays(["a", "b"], ["c", "d"]);
 concatenateArrays([1, 2], [3, 4], [5]);
@@ -101,18 +110,21 @@ concatenateArrays([1, 2], [3, 4], [5]);
 ---
 
 ## Problem 5:
-Define an interface `Course` with the following properties:
-- `title` (string)
-- `students` (number)
-- `isPublished` (boolean)
 
-Then, create a function `getPopularCourses` that accepts an array of `Course` objects and a `minStudents` number. The function should return a **new array** containing only the courses that are currently published (`isPublished` is `true`) and have `students` greater than or equal to `minStudents`.
+Define an interface `Course` with the following properties:
+
+* `title` (string)
+* `students` (number)
+* `isPublished` (boolean)
+
+Then, create a function `getPopularCourses` that accepts an array of `Course` objects and a `minStudents` number. The function should return a **new array** containing only the courses where `isPublished` is `true` **and** `students` is greater than or equal to `minStudents`.
 
 ### Requirements:
-- Define the `Course` interface properly.
-- Do not mutate the original array.
 
-```tsx
+* Define the `Course` interface with the exact property names and types.
+* Do not mutate the original array.
+
+```ts
 // Sample Input:
 const courses = [
   { title: "TypeScript Mastery", students: 120, isPublished: true },
@@ -133,13 +145,15 @@ getPopularCourses(courses, 80);
 ---
 
 ## Problem 6:
-Write a generic function `getPropertyValues` that takes an array of objects and a property key as arguments, and returns a new array containing the values of that specific key from each object. Use generic constraints to ensure the key exists on the objects in the array.
+
+Write a generic function `pluckValues` that accepts an array of objects (`items: T[]`) and a valid property key of those objects (`key: K`), and returns a new array (`T[K][]`) containing the values of that specific property from each object in the same order.
 
 ### Requirements:
-- Use generics with the `keyof` constraint.
-- Do not use `any`.
 
-```tsx
+* Use generics with the `keyof` constraint (`<T, K extends keyof T>`).
+* Do not use `any`.
+
+```ts
 // Sample Input:
 const users = [
   { id: 1, name: "Rakib", role: "Admin" },
@@ -147,8 +161,8 @@ const users = [
   { id: 3, name: "Tariq", role: "Subscriber" }
 ];
 
-getPropertyValues(users, "name");
-getPropertyValues(users, "id");
+pluckValues(users, "name");
+pluckValues(users, "id");
 
 // Sample Output:
 ["Rakib", "Sadia", "Tariq"]
@@ -158,15 +172,25 @@ getPropertyValues(users, "id");
 ---
 
 ## Problem 7:
-Create an `Employee` class with a `protected` property `name` and a `private` property `baseSalary`. Add a method `getDetails` in `Employee` that returns `"Employee: [name], Base Salary: [baseSalary]"`.
 
-Then, create a subclass `Manager` that extends `Employee` and adds a `private` property `department`. Include a method `getRoleInfo` in the `Manager` class that returns `"Manager of [department]: [name]"`.
+Create an `Employee` class and a `Manager` subclass following these exact specifications:
+
+1. **`Employee` class:**
+   * Has a `protected` property `name` (`string`) and a `private` property `baseSalary` (`number`).
+   * Constructor accepts `(name: string, baseSalary: number)` in that exact order.
+   * Has a method `getDetails()` that returns `"Employee: [name], Base Salary: [baseSalary]"`.
+
+2. **`Manager` class (extends `Employee`):**
+   * Adds a `private` property `department` (`string`).
+   * Constructor accepts `(name: string, baseSalary: number, department: string)` in that exact order and calls `super(name, baseSalary)`.
+   * Has a method `getRoleInfo()` that returns `"Manager of [department]: [name]"`.
 
 ### Requirements:
-- Use a constructor and `super()` properly to initialize properties.
-- Use `protected` and `private` access modifiers as specified.
 
-```tsx
+* Use `protected` and `private` access modifiers as specified.
+* Return the exact string formats shown in the sample output.
+
+```ts
 // Sample Input:
 const manager = new Manager("Alice", 50000, "Engineering");
 manager.getDetails();
@@ -180,19 +204,26 @@ manager.getRoleInfo();
 ---
 
 ## Problem 8:
-Create a function `calculateTotalPrice` that accepts an array of product objects. Each product object has the following properties:
-- `name` (string)
-- `price` (number)
-- `quantity` (number)
-- `discount` (optional number between 0 and 100, representing a percentage discount)
 
-The function should return the **total price** of all products after applying each product's discount (if provided). If the array is empty, return `0`.
+Create a function `calculateTotalPrice` that accepts an array of product objects. Each product object has the following properties:
+
+* `name` (string)
+* `price` (number)
+* `quantity` (number)
+* `discount?` (optional number between `0` and `100`, representing a percentage discount)
+
+The function should return the **total price** of all products after applying each product's percentage discount (if provided). If the input array is empty, return `0`.
+
+* **Calculation Formula per Product:**
+  * Without discount: `price * quantity`
+  * With discount: `(price * quantity) * (1 - discount / 100)`
 
 ### Requirements:
-- Write an interface or type alias for the product object.
-- Properly handle the optional `discount` property.
 
-```tsx
+* Define an interface or type alias `Product` for the product objects.
+* Properly handle the optional `discount` property (including when `discount` is `0` or `undefined`).
+
+```ts
 // Sample Input:
 const products = [
   { name: "Pen", price: 10, quantity: 2 },
@@ -222,10 +253,10 @@ Write an impactful and technically detailed blog post on **any 2 of the followin
 
 ### Blog Rules & Instructions:
 
-- **File Naming:** Submit each blog post in its own Markdown file named after the blog topic using the format `[blog-name].md` (e.g., `type-vs-interface.md`, `type-narrowing.md`).
-- **Length Requirement:** Every blog post must have **at least 500 sentences**.
-- **Structure:** Each blog must have a clear **Title**, **Introduction**, **Detailed Body Paragraphs with Code Examples**, and **Conclusion**.
-- **Language:** English or Bangla.
+* **File Naming:** Submit each blog post in its own Markdown file named after the blog topic using the format `[blog-name].md` (e.g., `type-vs-interface.md`, `type-narrowing.md`).
+* **Length Requirement:** Every blog post must be between **150 to 300 words** (or **15 to 25 meaningful sentences**).
+* **Structure:** Each blog must have a clear **Title**, **Introduction**, **Detailed Body Paragraphs with Code Examples**, and **Conclusion**.
+* **Language:** English or Bangla.
 
 ---
 
@@ -233,15 +264,15 @@ Write an impactful and technically detailed blog post on **any 2 of the followin
 
 All coding solutions must be placed in a single file named `solutions.ts`.
 
-- **Exact Function & Class Names:** You must use the exact function, interface, and class names specified in the problem descriptions (`formatString`, `processInput`, `formatCoordinate`, `concatenateArrays`, `Course`, `getPopularCourses`, `getPropertyValues`, `Employee`, `Manager`, `getDetails`, `getRoleInfo`, `calculateTotalPrice`).
-- **Exact Output:** Your function and method return values must **exactly match** the sample outputs, including spaces, punctuation, and capitalization.
-  - *Correct:* `"Employee: Alice, Base Salary: 50000"`
-  - *Incorrect:* `"employee: Alice, base salary: 50000"`
-- **Clean Code:** Use meaningful variable names and avoid using `any`.
-- **No Noise:**
-  - Do **not** include comments like `// Problem 1`, `// Problem 2`, etc., in `solutions.ts`.
-  - Do **not** include any `console.log` statements in your final `solutions.ts` file; always `return` the values.
-- **Originality:** All code and blog writing must be your own work. Plagiarism (copying from friends, documentation, or AI generators) will result in a **zero**.
+* **Exact Function & Class Names:** You must use the exact function, interface, and class names specified in the problem descriptions (`multiplyValue`, `processInput`, `formatCoordinate`, `concatenateArrays`, `Course`, `getPopularCourses`, `pluckValues`, `Employee`, `Manager`, `getDetails`, `getRoleInfo`, `Product`, `calculateTotalPrice`).
+* **Exact Output:** Your function and method return values must **exactly match** the sample outputs, including spaces, punctuation, and capitalization.
+  * *Correct:* `"Employee: Alice, Base Salary: 50000"`
+  * *Incorrect:* `"employee: Alice, base salary: 50000"`
+* **Clean Code:** Use meaningful variable names and avoid using `any`.
+* **No Noise:**
+  * Do **not** include comments like `// Problem 1`, `// Problem 2`, etc., in `solutions.ts`.
+  * Do **not** include any `console.log` statements or sample test calls in your final `solutions.ts` file; always `return` the values from your functions/methods.
+* **Originality:** All code and blog writing must be your own work. Plagiarism (copying from friends, documentation, or AI generators) will result in a **zero**.
 
 ---
 
