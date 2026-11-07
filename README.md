@@ -251,7 +251,7 @@ All coding solutions must be placed in a single file named `solutions.ts`.
 
 ## Assignment Schedule & Deadlines
 
-* **Assignment Release (Module 4: Assignment-1):** November 07, 2026 – *8:00 PM (Saturday)*
-* **60 Marks Deadline:** November 08, 2026 – *11:59 PM (Sunday)*
-* **50 Marks Deadline:** November 09, 2026 – *11:59 PM (Monday)*
-* **30 Marks Deadline:** November 09, 2026 (*after 11:59 PM*) to November 30, 2026 – *before 11:59 PM (Next 21 Days)*
+* **Assignment Release (Module 4: Assignment-1):** November 08, 2026 – *8:00 PM (Saturday)*
+* **60 Marks Deadline:** November 09, 2026 – *11:59 PM (Sunday)*
+* **50 Marks Deadline:** November 10, 2026 – *11:59 PM (Monday)*
+* **30 Marks Deadline:** November 10, 2026 (*after 11:59 PM*) to December 01, 2026 – *before 11:59 PM (Next 21 Days)*
