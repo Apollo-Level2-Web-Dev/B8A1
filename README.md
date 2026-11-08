@@ -224,7 +224,7 @@ Write two separate, technically detailed blog posts on **any 2 of the following 
 All coding solutions must be placed in a single file named `solutions.ts`.
 
 * **Explicit Parameter & Return Types:** You must explicitly write the parameter types and return types for every function and class method.
-* **Exact Function & Class Names:** You must use the exact function, interface, and class names specified in the problem descriptions (`multiplyValue`, `processInput`, `formatCoordinate`, `concatenateArrays`, `Course`, `getPopularCourses`, `pluckValues`, `Employee`, `Manager`, `getDetails`, `getRoleInfo`, `validateAgeAsync`, `getUniqueNumbers`, `Product`, `updateProductPrice`).
+* **Exact Function & Class Names:** You must use the exact function, interface, and class names specified in the problem descriptions (`multiplyValue`, `processInput`, `formatCoordinate`, `concatenateArrays`, `Course`, `getPopularCourses`, `pluckValues`, `Employee`, `Manager`, `getDetails`, `getRoleInfo`, `validateAgeAsync`).
 * **Exact Output:** Your function and method return values must **exactly match** the sample outputs, including spaces, punctuation, and capitalization.
   * *Correct:* `"Employee: Alice, Base Salary: 50000"`
   * *Incorrect:* `"employee: Alice, base salary: 50000"`
